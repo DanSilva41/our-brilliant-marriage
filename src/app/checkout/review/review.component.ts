@@ -87,7 +87,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
           this.router.navigate(['/order-complete']);
         },
         (error) => {
-          this.messageService.addError('Could not submit order, try again.');
+          this.messageService.addError('Não foi possível enviar o pedido, tente novamente.');
         }
       );
   }
@@ -103,7 +103,7 @@ export class ReviewComponent implements OnInit, OnDestroy {
           this.router.navigate(['/order-complete']);
         },
         (error) => {
-          this.messageService.addError('Could not submit order, try again.');
+          this.messageService.addError('Não foi possível enviar o pedido, tente novamente.');
         }
       );
   }

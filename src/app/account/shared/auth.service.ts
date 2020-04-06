@@ -50,12 +50,12 @@ export class AuthService {
     );
   }
 
-  public emailSignUp(email: string, password: string) {
+  public emailSignUp(firstName, lastName, email: string, password: string) {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
       .then(
-        (user) => {
-          this.updateNewUser(user);
+        (authData) => {
+          this.updateNewUser(authData.user, firstName, lastName);
         },
         (error) => {
           throw error;
@@ -75,20 +75,19 @@ export class AuthService {
   }
 
   public signOut() {
-    this.afAuth.auth.signOut();
-    this.messageService.add('You have been logged out.');
+    this.afAuth.auth.signOut().then(() => this.messageService.add('Você foi desconectado.'));
   }
 
   public updateProfile(userData: User) {
     this.updateExistingUser(userData);
-    this.messageService.add('User profile has been updated!');
+    this.messageService.add('O seu perfil foi atualizado!');
   }
 
   public updatePassword(password: string) {
     return this.afAuth.auth.currentUser
       .updatePassword(password)
       .then(() => {
-        this.messageService.add('Password has been updated!');
+        this.messageService.add('A senha foi atualizada!');
       })
       .catch(function(error) {
         throw error;
@@ -100,16 +99,16 @@ export class AuthService {
       .updateEmail(email)
       .then(() => {
         this.updateExistingUser({ email: email });
-        this.messageService.add('User email have been updated!');
+        this.messageService.add('O email do usuário foi atualizado!');
       })
       .catch(function(error) {
         throw error;
       });
   }
 
-  private updateNewUser(authData) {
-    const userData = new User(authData);
-    const ref = this.db.object('users/' + authData.uid);
+  private updateNewUser(userReceived: any, firstName?: string, lastName?: string) {
+    const userData = new User(userReceived, firstName, lastName);
+    const ref = this.db.object('users/' + userReceived.uid);
     ref
       .valueChanges()
       .pipe(

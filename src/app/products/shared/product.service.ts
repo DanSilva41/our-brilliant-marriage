@@ -47,7 +47,7 @@ export class ProductService {
 
   public getProducts(): Observable<Product[]> {
     return this.angularFireDatabase
-      .list<Product>('products', (ref) => ref.orderByChild('date'))
+      .list<Product>('products', (ref) => ref.orderByChild('id'))
       .valueChanges()
       .pipe(map((arr) => arr.reverse()), catchError(this.handleError<Product[]>(`getProducts`)));
   }
@@ -135,7 +135,7 @@ export class ProductService {
           if (result) {
             return of(result);
           } else {
-            this.messageService.addError(`Found no Product with id=${id}`);
+            this.messageService.addError(`Não foi encontrado nenhum produto com o ID=${id}`);
             return of(null);
           }
         }),
@@ -193,12 +193,14 @@ export class ProductService {
     const dbOperation = this.uploadService
       .startUpload(data)
       .then((task) => {
-        data.product.imageURLs.push(task.downloadURL);
-        data.product.imageRefs.push(task.ref.fullPath);
+        task.ref.getDownloadURL().then((r) => {
+          data.product.imageURLs.push(r);
+          data.product.imageRefs.push(task.ref.fullPath);
 
-        return this.angularFireDatabase
-          .list('products')
-          .set(data.product.id.toString(), data.product);
+          return this.angularFireDatabase
+            .list('products')
+            .set(data.product.id.toString(), data.product);
+        });
       }, (error) => error)
       .then((response) => {
         this.log(`Added Product ${data.product.name}`);
@@ -224,7 +226,7 @@ export class ProductService {
       .remove()
       .then(() => this.log('success deleting' + product.name))
       .catch((error) => {
-        this.messageService.addError('Delete failed ' + product.name);
+        this.messageService.addError('Falha na exclusão ' + product.name);
         this.handleError('delete product');
       });
   }

@@ -15,10 +15,10 @@ export class User {
   public confirmPassword?: string;
   public uid?: string;
 
-  constructor(authData) {
-    this.email = authData.email;
-    this.firstName = authData.firstName ? authData.firstName : '';
-    this.lastName = authData.lastName ? authData.lastName : '';
+  constructor(userReceived: any, firstName?: string, lastName?: string) {
+    this.email = userReceived.email;
+    this.firstName = firstName ? firstName : '';
+    this.lastName = lastName ? lastName : '';
     this.roles = {
       admin: false
     };

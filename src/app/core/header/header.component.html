@@ -33,16 +33,16 @@
           <ul *ngIf="user" class="toolbar-dropdown">
             <li class="sub-menu-user">
               <div class="user-info">
-                <h6 class="user-name">{{ user.email }}
-                  <span *ngIf="user.roles.admin"> (Admin)</span>
+                <h6 class="user-name">{{ user?.firstName }} {{ ' '}} {{ user?.lastName }}
+                  <span *ngIf="user?.roles?.admin"> (Admin)</span>
                 </h6>
               </div>
             </li>
             <li>
-              <a routerLink="/account/profile" href="">My Profile</a>
+              <a routerLink="/account/profile" href="">Meu Perfil</a>
             </li>
             <li>
-              <a routerLink="/account/orders" href="">Orders List</a>
+              <a routerLink="/account/orders" href="">Lista de Presentes Confirmados</a>
             </li>
             <li class="sub-menu-separator"></li>
             <li>

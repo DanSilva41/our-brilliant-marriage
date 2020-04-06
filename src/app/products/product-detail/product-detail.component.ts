@@ -118,7 +118,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     if (this.product) {
       this.checkCategories();
       this.checkRatings();
-      this.activeImageUrl = this.product.imageURLs[0];
+      if(this.product.imageURLs) {
+        this.activeImageUrl = this.product.imageURLs[0];
+      }
       this.activeImageIndex = 0;
     }
   }

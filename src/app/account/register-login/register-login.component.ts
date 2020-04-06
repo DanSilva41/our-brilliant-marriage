@@ -1,13 +1,8 @@
-import { Component, OnInit, ViewChild, OnChanges } from '@angular/core';
-import {
-  FormGroup,
-  ReactiveFormsModule,
-  FormControl,
-  Validators
-} from '@angular/forms';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-import { MessageService } from '../../messages/message.service';
-import { AuthService } from '../shared/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {MessageService} from '../../messages/message.service';
+import {AuthService} from '../shared/auth.service';
 
 @Component({
   selector: 'app-register-login',
@@ -23,7 +18,8 @@ export class RegisterLoginComponent implements OnInit {
     private authenticationService: AuthService,
     private router: Router,
     private messageService: MessageService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.initLoginForm();
@@ -39,6 +35,8 @@ export class RegisterLoginComponent implements OnInit {
 
   private initRegisterForm() {
     this.registerForm = new FormGroup({
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, Validators.required),
       confirmPassword: new FormControl(null, Validators.required)
@@ -47,28 +45,28 @@ export class RegisterLoginComponent implements OnInit {
 
   public onRegister() {
     if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
-      this.registerErrors = 'Passwords don\'t match!';
-      this.registerForm.controls.password.setErrors({ password: true });
-      this.registerForm.controls.confirmPassword.setErrors({ confirmPassword: true });
+      this.registerErrors = 'As senhas não correspondem!';
+      this.registerForm.controls.password.setErrors({password: true});
+      this.registerForm.controls.confirmPassword.setErrors({confirmPassword: true});
     } else {
-      this.authenticationService.emailSignUp(this.registerForm.value.email, this.registerForm.value.password)
-      .then(
-        () => {
-          this.messageService.add('Account created successfully. Please login with your new credentials!');
-          this.loginForm.setValue({ email: this.registerForm.value.email, password: ''});
-          this.initRegisterForm();
-        },
-        (error) => {
-          this.registerErrors = error.message;
-          if (error.code === 'auth/weak-password') {
-            this.registerForm.controls.password.setErrors({ password: true });
-            this.registerForm.controls.confirmPassword.setErrors({ confirmPassword: true });
+      this.authenticationService.emailSignUp(this.registerForm.value.firstName, this.registerForm.value.lastName, this.registerForm.value.email, this.registerForm.value.password)
+        .then(
+          () => {
+            this.loginForm.setValue({email: this.registerForm.value.email, password: ''});
+            this.initRegisterForm();
+            this.router.navigate(['/home']).then(() => this.messageService.add('Conta criada com sucesso!'));
+          },
+          (error) => {
+            this.registerErrors = error.message;
+            if (error.code === 'auth/weak-password') {
+              this.registerForm.controls.password.setErrors({password: true});
+              this.registerForm.controls.confirmPassword.setErrors({confirmPassword: true});
+            }
+            if (error.code === 'auth/email-already-in-use') {
+              this.registerForm.controls.email.setErrors({email: true});
+            }
           }
-          if (error.code === 'auth/email-already-in-use') {
-            this.registerForm.controls.email.setErrors({ email: true });
-          }
-        }
-      );
+        );
     }
   }
 
@@ -77,15 +75,15 @@ export class RegisterLoginComponent implements OnInit {
       .emailLogin(this.loginForm.value.email, this.loginForm.value.password)
       .then(
         () => {
-          this.messageService.add('Login successful!');
+          this.messageService.add('Bem-vindo!');
           this.router.navigate(['/home']);
         },
         (error) => {
           if (error.code === 'auth/user-not-found') {
-            this.loginForm.controls.email.setErrors({ email: true });
+            this.loginForm.controls.email.setErrors({email: true});
           }
           if (error.code === 'auth/wrong-password') {
-            this.loginForm.controls.password.setErrors({ password: true });
+            this.loginForm.controls.password.setErrors({password: true});
           }
         }
       );

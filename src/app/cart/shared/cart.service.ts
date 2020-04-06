@@ -13,7 +13,7 @@ export class CartService {
     this.cartItems = [];
   }
 
-  public getItems() {
+  public getItems(): CartItem[] {
     return this.cartItems.slice();
   }
 
@@ -30,10 +30,10 @@ export class CartService {
           cartItem.amount += item.amount;
         }
       });
-      this.messageService.add('Amount in cart changed for: ' + item.product.name);
+      this.messageService.add('O valor total de seus presentes foi alterado para: ' + item.product.name);
     } else {
       this.cartItems.push(item);
-      this.messageService.add('Added to cart: ' + item.product.name);
+      this.messageService.add(`${item.product.name} foi adicionado(a) à lista de presentes presentes!`);
     }
     this.itemsChanged.emit(this.cartItems.slice());
   }
@@ -48,7 +48,7 @@ export class CartService {
     const indexToRemove = this.cartItems.findIndex(element => element === item);
     this.cartItems.splice(indexToRemove, 1);
     this.itemsChanged.emit(this.cartItems.slice());
-    this.messageService.add('Deleted from cart: ' + item.product.name);
+    this.messageService.add(`${item.product.name} foi removido(a) de lista de presentes!`);
   }
 
   public updateItemAmount(item: CartItem, newAmount: number) {
@@ -58,13 +58,13 @@ export class CartService {
       }
     });
     this.itemsChanged.emit(this.cartItems.slice());
-    this.messageService.add('Updated amount for: ' + item.product.name);
+    this.messageService.add('Valor atualizado para: ' + item.product.name);
   }
 
   public clearCart() {
     this.cartItems = [];
     this.itemsChanged.emit(this.cartItems.slice());
-    this.messageService.add('Cleared cart');
+    this.messageService.add('Lista de presentes limpa!');
   }
 
   public getTotal() {

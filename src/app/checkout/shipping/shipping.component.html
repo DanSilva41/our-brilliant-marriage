@@ -17,7 +17,7 @@
             <span class="text-medium">{{shippingMethod.method}}</span>
           </td>
           <td class="align-middle">{{shippingMethod.time}}</td>
-          <td class="align-middle">{{shippingMethod.fee | currency}}</td>
+          <td class="align-middle">{{shippingMethod.fee | currency:'BRL':true }}</td>
           <td class="align-middle">
             <label class="custom-control custom-radio">
               <input class="form-control-radio" type="radio" name="shippingMethod" value="{{shippingMethod.value}}" formControlName="shippingMethod">

@@ -2,25 +2,25 @@
   <a routerLink="/cart"></a>
   <i class="icon-bag"></i>
   <span class="count">{{items.length}}</span>
-  <span class="subtotal">{{ total | currency }}</span>
+  <span class="subtotal">{{ total | currency:'BRL':true }}</span>
   <div class="toolbar-dropdown">
     <div *ngIf="items.length; else noItemsInCart">
       <div *ngFor="let item of items" class="dropdown-product-item">
         <span class="dropdown-product-remove" (click)="onRemoveItem($event, item)">
           <i class="icon-cross"></i>
         </span>
-        <a class="dropdown-product-thumb" [routerLink]="['/products', item.product.id]">
-          <img [src]="item.product.imageURLs[0]" alt="{{item.product.name}}">
+        <a class="dropdown-product-thumb" [routerLink]="['/products', item.product.id]" *ngIf="item?.product?.imageURLs">
+          <img [src]="item?.product?.imageURLs[0]" alt="{{item?.product?.name}}">
         </a>
         <div class="dropdown-product-info">
-          <a class="dropdown-product-title" [routerLink]="['/products', item.product.id]">{{item.product.name}}</a>
-          <span class="dropdown-product-details">{{item.amount}} x <span><app-price [product]="item.product"></app-price></span></span>
+          <a class="dropdown-product-title" [routerLink]="['/products', item?.product?.id]">{{item?.product?.name}}</a>
+          <span class="dropdown-product-details">{{item?.amount}} x <span><app-price [product]="item?.product"></app-price></span></span>
         </div>
       </div>
     </div>
     <ng-template #noItemsInCart>
       <div><p>
-        There are no items in your cart..
+        Não existem presentes em sua lista...
       </p></div>
     </ng-template>
     <div class="toolbar-dropdown-group">
@@ -28,15 +28,15 @@
         <span class="text-lg">Total:</span>
       </div>
       <div class="column text-right">
-        <span class="text-lg text-medium" [innerHTML]="total | currency">&nbsp;</span>
+        <span class="text-lg text-medium" [innerHTML]="total | currency:'BRL':true">&nbsp;</span>
       </div>
     </div>
     <div class="toolbar-dropdown-group">
       <div class="column">
-        <a class="btn btn-sm btn-block btn-secondary" routerLink="/cart">View Cart</a>
+        <a class="btn btn-sm btn-block btn-secondary" routerLink="/cart">Meus Presentes</a>
       </div>
       <div class="column">
-        <a class="btn btn-sm btn-block btn-success" routerLink="/checkout">Checkout</a>
+        <a class="btn btn-sm btn-block btn-success" routerLink="/checkout">Finalizar</a>
       </div>
     </div>
   </div>

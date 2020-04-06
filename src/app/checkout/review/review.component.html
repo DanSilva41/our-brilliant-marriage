@@ -25,7 +25,7 @@
             </div>
           </div>
         </td>
-        <td class="text-center text-lg text-medium">{{ (item.product.price * item.amount) | currency }}</td>
+        <td class="text-center text-lg text-medium">{{ (item.product.price * item.amount) | currency:'BRL':true }}</td>
         <td class="text-center">
           <a class="btn btn-outline-primary btn-sm" routerLink="/cart">Edit</a>
         </td>
@@ -36,7 +36,7 @@
 <div class="shopping-cart-footer">
   <div class="column"></div>
   <div class="column text-lg">Subtotal:
-    <span class="text-medium">{{ total | currency }}</span>
+    <span class="text-medium">{{ total | currency:'BRL':true }}</span>
   </div>
 </div>
 <div class="row padding-top-1x mt-3">

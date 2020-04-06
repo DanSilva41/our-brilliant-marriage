@@ -14,6 +14,6 @@ export class Product {
     public categories: {} = {},
     public ratings: {} = {},
     public currentRating: number = 0,
-    public sale: boolean = false
+    public sale: boolean = true
   ) {}
 }

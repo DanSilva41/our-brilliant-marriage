@@ -3,34 +3,34 @@
 <form class="row" [formGroup]="formProfile" (ngSubmit)="onSubmit()">
   <div class="col-md-6">
     <div class="form-group">
-      <label for="account-email">E-mail Address</label>
+      <label for="account-email">E-mail</label>
       <input class="form-control" type="email" id="account-email" formControlName="email">
     </div>
   </div>
   <div class="col-md-6"></div>
   <div class="col-md-6">
     <div class="form-group" [ngClass]="{'has-danger': formProfile.get('firstName').invalid && formProfile.get('firstName').touched}">
-      <label for="account-fn">First Name</label>
+      <label for="account-fn">Primeiro Nome</label>
       <input class="form-control" type="text" id="account-fn" formControlName="firstName">
-      <div class="form-control-feedback" *ngIf="formProfile.get('firstName').invalid && formProfile.get('firstName').touched">Please enter your firstname!</div>
+      <div class="form-control-feedback" *ngIf="formProfile.get('firstName').invalid && formProfile.get('firstName').touched">Por favor digite seu primeiro nome!</div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group" [ngClass]="{'has-danger': formProfile.get('lastName').invalid && formProfile.get('lastName').touched}">
-      <label for="account-ln">Last Name</label>
+      <label for="account-ln">Sobrenome</label>
       <input class="form-control" type="text" id="account-ln" formControlName="lastName">
-      <div class="form-control-feedback" *ngIf="formProfile.get('lastName').invalid && formProfile.get('lastName').touched">Please enter your lastname!</div>
+      <div class="form-control-feedback" *ngIf="formProfile.get('lastName').invalid && formProfile.get('lastName').touched">Por favor digite seu sobrenome!</div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
-      <label for="account-pass">New Password</label>
+      <label for="account-pass">Nova Senha</label>
       <input class="form-control" type="password" formControlName="password" id="account-pass">
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
-      <label for="account-confirm-pass">Confirm Password</label>
+      <label for="account-confirm-pass">Confirmação de nova senha</label>
       <input class="form-control" type="password" formControlName="confirmPassword" id="account-confirm-pass">
     </div>
   </div>

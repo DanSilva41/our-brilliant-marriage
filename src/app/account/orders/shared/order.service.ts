@@ -64,7 +64,7 @@ export class OrderService {
     return {
       number: (Math.random() * 10000000000).toString().split('.')[0],
       date: new Date().toString(),
-      status: 'In Progress'
+      status: 'Em Progresso'
     };
   }
 

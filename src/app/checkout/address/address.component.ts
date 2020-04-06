@@ -44,20 +44,20 @@ export class AddressComponent implements OnInit, OnDestroy {
         this.user && this.user.lastName,
         Validators.required
       ),
-      address1: new FormControl(null, Validators.required),
-      address2: new FormControl(null),
-      zip: new FormControl(null, [
-        Validators.required,
-        Validators.pattern(/^\d\d\d\d$/)
-      ]),
-      city: new FormControl(null, Validators.required),
+      // address1: new FormControl(null, Validators.required),
+      // address2: new FormControl(null),
+      // zip: new FormControl(null, [
+      //   Validators.required,
+      //   Validators.pattern(/^\d\d\d\d$/)
+      // ]),
+      // city: new FormControl(null, Validators.required),
       email: new FormControl(
         this.user && this.user.email,
         Validators.email
       ),
       phone: new FormControl(null),
-      company: new FormControl(null),
-      country: new FormControl({ value: this.countries[0], disabled: false })
+      // company: new FormControl(null),
+      // country: new FormControl({ value: this.countries[0], disabled: false })
     });
   }
 

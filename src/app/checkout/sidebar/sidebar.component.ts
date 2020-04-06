@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { CartService } from '../../cart/shared/cart.service';
+import {CartService} from '../../cart/shared/cart.service';
+import {CartItem} from '../../models/cart-item.model';
 
 @Component({
   selector: 'app-checkout-sidebar',
@@ -12,12 +13,15 @@ export class SidebarComponent implements OnInit {
   public shipping: number;
   public orderTotal: number;
 
-  constructor(private cartService: CartService) {}
+  public itensCart: CartItem[];
+
+  constructor(private cartService: CartService) {
+  }
 
   ngOnInit() {
-    this.cartSubtotal = this.cartService.getTotal();
-    // TODO: shipping, hardcoded for now
-    this.shipping = 9;
-    this.orderTotal = this.cartSubtotal + this.shipping;
+    this.itensCart = this.cartService.getItems();
+    this.orderTotal = this.cartService.getTotal();
+    this.cartSubtotal = 0;
+    this.shipping = 0;
   }
 }
