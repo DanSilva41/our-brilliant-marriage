@@ -1,5 +1,5 @@
 <div class="cart">
-  <a routerLink="/cart"></a>
+  <a routerLink="/lista-presentes"></a>
   <i class="icon-bag"></i>
   <span class="count">{{items.length}}</span>
   <span class="subtotal">{{ total | currency:'BRL':true }}</span>
@@ -9,11 +9,11 @@
         <span class="dropdown-product-remove" (click)="onRemoveItem($event, item)">
           <i class="icon-cross"></i>
         </span>
-        <a class="dropdown-product-thumb" [routerLink]="['/products', item.product.id]" *ngIf="item?.product?.imageURLs">
+        <a class="dropdown-product-thumb" [routerLink]="['/presentes', item.product.id]" *ngIf="item?.product?.imageURLs">
           <img [src]="item?.product?.imageURLs[0]" alt="{{item?.product?.name}}">
         </a>
         <div class="dropdown-product-info">
-          <a class="dropdown-product-title" [routerLink]="['/products', item?.product?.id]">{{item?.product?.name}}</a>
+          <a class="dropdown-product-title" [routerLink]="['/presentes', item?.product?.id]">{{item?.product?.name}}</a>
           <span class="dropdown-product-details">{{item?.amount}} x <span><app-price [product]="item?.product"></app-price></span></span>
         </div>
       </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="toolbar-dropdown-group">
       <div class="column">
-        <a class="btn btn-sm btn-block btn-secondary" routerLink="/cart">Meus Presentes</a>
+        <a class="btn btn-sm btn-block btn-secondary" routerLink="/lista-presentes">Meus Presentes</a>
       </div>
       <div class="column">
         <a class="btn btn-sm btn-block btn-success" routerLink="/checkout">Finalizar</a>

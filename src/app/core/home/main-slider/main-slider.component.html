@@ -12,7 +12,7 @@
                 <span class="text-bold"><app-price [product]="item"></app-price></span>
               </div>
             </div>
-            <a class="btn btn-primary scale-up delay-1" routerLink="/products/{{ item.id }}">Shop now</a>
+            <a class="btn btn-primary scale-up delay-1" routerLink="/presentes/{{ item.id }}">Shop now</a>
           </div>
           <div class="col-md-6 padding-bottom-2x mb-3">
             <div class="image-wrapper" [ngClass]="{'loading': !imagesLoaded.includes(item.imageFeaturedurl)}">
