@@ -203,12 +203,12 @@ export class ProductService {
         });
       }, (error) => error)
       .then((response) => {
-        this.log(`Added Product ${data.product.name}`);
+        this.log(`Presente adicionado ${data.product.name}`);
         return data.product;
       })
       .catch((error) => {
         this.messageService.addError(
-          `Add Failed, Product ${data.product.name}`
+          `Falha ao adicionar presente: ${data.product.name}`
         );
         this.handleError(error);
         return error;

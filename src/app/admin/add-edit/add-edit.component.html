@@ -93,7 +93,7 @@
 
         <div class="row mb-5">
           <div class="col text-right">
-            <button [disabled]="(mode === 'add')" class="btn btn-danger" type="button" (click)="onDelete()">Excluir Presente</button>
+            <button *ngIf="!(mode === 'add')" class="btn btn-danger" type="button" (click)="onDelete()">Excluir Presente</button>
             <button [disabled]="productForm.invalid" class="btn btn-primary" type="submit">Salvar</button>
           </div>
         </div>

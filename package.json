@@ -1,11 +1,11 @@
 {
-  "name": "shop",
-  "version": "0.0.0",
+  "name": "our-wedding",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "sudo ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

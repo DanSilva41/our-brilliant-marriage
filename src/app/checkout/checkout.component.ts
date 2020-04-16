@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
-import { CheckoutService } from './shared/checkout.service';
+import {CheckoutService} from './shared/checkout.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,7 +14,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   steps: string[];
   activeStep: number;
 
-  constructor(private checkoutService: CheckoutService) {}
+  // TODO: Redirecionar para a tela de Login caso não esteja autenticado
+  constructor(private checkoutService: CheckoutService) {
+  }
 
   ngOnInit() {
     this.steps = ['1. Informações Pessoais', '2. Shipping', '3. Payment', '4. Review'];
