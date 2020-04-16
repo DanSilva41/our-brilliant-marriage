@@ -19,7 +19,7 @@ import { Promo } from '../../models/promo.model';
 export class HomeComponent implements OnInit, OnDestroy {
   private unsubscribe$ = new Subject();
   public products: Product[];
-  public productsFeatured: any;
+  public productsFeatured: Product[];
   public productsNewArrivals: Product[];
   public productsOnSale: Product[];
   public productsBestRated: Product[];
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
 
     this.productService
-      .getFeaturedProducts()
+      .getProducts()
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(
         (products) => {
