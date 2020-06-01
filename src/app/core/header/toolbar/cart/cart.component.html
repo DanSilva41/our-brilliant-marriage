@@ -36,7 +36,7 @@
         <a class="btn btn-sm btn-block btn-secondary" routerLink="/lista-presentes">Meus Presentes</a>
       </div>
       <div class="column">
-        <a class="btn btn-sm btn-block btn-success" routerLink="/checkout">Finalizar</a>
+        <a class="btn btn-sm btn-block btn-success" routerLink="/checkout" [ngClass]="{'div-disabled': total <= 0 }">Finalizar</a>
       </div>
     </div>
   </div>

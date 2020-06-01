@@ -2,8 +2,12 @@
 @import '~scss/helpers/mixins';
 
 @keyframes fadeOut {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 // Hero Slider
@@ -25,86 +29,86 @@
 
 
 .hero-slider {
-    position: relative;
+  position: relative;
 }
 
 .hero-slider-prev,
 .hero-slider-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: #ffffff;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    border: 1px solid #e1e7ec;
-    color: #374250;
-    cursor: pointer;
-    opacity: 0.7;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: #ffffff;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  border: 1px solid #e1e7ec;
+  color: #374250;
+  cursor: pointer;
+  opacity: 0.7;
 
-    &:hover {
-      opacity: 1;
-    }
+  &:hover {
+    opacity: 1;
+  }
 
-    @media screen and (max-width: 992px) {
-      display: none;
-    }
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 }
 
 .hero-slider-prev {
-    left: 15px;
+  left: 15px;
 
-    &::before {
-      font: {
-        family: feather;
-        size: 19px;
-      }
-      color: #374250;
-      content: '\e094';
+  &::before {
+    font: {
+      family: feather;
+      size: 19px;
     }
+    color: #374250;
+    content: '\e094';
+  }
 }
 
 .hero-slider-next {
-    right: 15px;
+  right: 15px;
 
-    &::before {
-        font-family: feather;
-        font-size: 19px;
-        color: #374250;
-        content: '\e095';
-    }
+  &::before {
+    font-family: feather;
+    font-size: 19px;
+    color: #374250;
+    content: '\e095';
+  }
 }
 
 .hero-slider-dots {
-    position: absolute;
-    bottom: 0;
-    margin: 0;
-    text-align: center;
-    transform: translateX(-50%);
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    background-color: #606975;
-    display: inline-block;
-    left: 50%;
-    width: auto;
-    padding: 10px 22px 14px;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  text-align: center;
+  transform: translateX(-50%);
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  background-color: #606975;
+  display: inline-block;
+  left: 50%;
+  width: auto;
+  padding: 10px 22px 14px;
 }
 
 .hero-slider-dot {
-    cursor: pointer;
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    margin: 0 6px;
-    transition: opacity .25s;
-    border-radius: 50%;
-    background-color: #ffffff;
-    opacity: 0.5;
+  cursor: pointer;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 6px;
+  transition: opacity .25s;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0.5;
 
-    &.active {
-        opacity: 1;
-    }
+  &.active {
+    opacity: 1;
+  }
 }
 
 .image-wrapper {
@@ -113,5 +117,49 @@
     min-height: 400px;
     background: url('../../../../img/loading.gif') center center no-repeat;
   }
+}
+
+/* ---------------------------------
+4. SLIDER
+--------------------------------- */
+
+.main-slider{ height: 80vh; position: relative; z-index: 1;
+  background-image: url(img/wedding-bg.jpg); background-size: cover; color: #fff !important; }
+
+.main-slider:after{ content:''; position: absolute; top: 0; bottom: 0; left: 0; right: 0;
+  z-index: -1; background: rgba(0,0,0,.3); }
+
+.main-slider .slider-content .title{ margin-bottom: 20px; }
+
+.main-slider .slider-content i{ margin-right: 10px; transform: translateY(3px); }
+
+.slider-content .pre-title, .slider-content .title { color: #fff !important; }
+.slider-content .date{ margin: 10px 0 0; color: #fff !important; }
+
+.slider-content i{ line-height: 1; }
+
+.slider-content i.small-icon{ font-size: 2.5em; }
+
+.slider-content .title i{ transform: translateY(10px); font-size: .8em; color: #E45F74 !important; }
+
+.display-table{ display: table; height: 100%; width: 100%; }
+
+.display-table-cell{ display: table-cell; vertical-align: middle; }
+
+h1, h2, h3 {
+  font-family: 'Playball', cursive !important;
+}
+
+h1 {
+  font-size: 5em !important;
+  line-height: 1 !important;
+}
+
+h3 {
+  font-size: 2.5em !important;
+}
+
+h5 {
+  font-size: 1.5em !important;
 }
 

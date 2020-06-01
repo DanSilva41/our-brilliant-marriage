@@ -510,8 +510,8 @@
       > .column {
         display: table-cell;
         vertical-align: top;
-        &:first-child { padding-right: 6px; }
-        &:last-child { padding-left: 6px; }
+        &:first-child { padding-right: 1px; }
+        &:last-child { padding-left: 1px; }
       }
       .btn { margin: 0; }
     }
